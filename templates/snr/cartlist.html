@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>login</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    </head>
+    <body>
+        
+        <html lang="en">
+
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="x-ua-compatible" content="ie=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Basket</title>
+        </head>
+        
+        
+          <main>
+            <div class="basket">
+              <div class="basket-module">
+                <label for="promo-code">Enter a promotional code</label>
+                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+                <button class="promo-code-cta">Apply</button>
+              </div>
+
+              
+              <div class="basket-labels">
+                <ul>
+                  <li class="item item-heading">Item</li>
+                  <li class="price">Price</li>
+                  
+                  <li class="quantity">Quantity{{items}}</li>
+                  <li class="subtotal">Subtotal</li>
+                  
+                </ul>
+              </div>
+              
+              <div class="basket-product">
+                <div class="item">
+                  <div class="product-image">
+                    <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+                  </div>
+                  {% for order_item in order.items.all %}
+                  <div class="product-details">
+                    {{forloop.counter}}
+                    <h1><strong><span class="item-quantity">{{order_item.quantity}}</span> x Eliza J</strong>{{order_item.product.name}}</h1>
+                    <p><strong>Navy, Size 18</strong></p>
+                    <p>Product Code - 232321939</p>
+                  </div>
+                </div>
+                <div class="price">{{order_item.get_total_item_price}}</div>
+                <div class="quantity">
+                  <a href="{% url 'addproductplus' order_item.id %}">+/</a>
+                  <input type="number" value={{order_item.quantity}} m1in="1" class="quantity-field">
+                  <a href="{% url 'minusproductplus' order_item.id %}">_</a>
+                </div>
+                <div class="subtotal">104.00</div>
+                <div class="remove">
+                  <a href="{% url 'deleteproductplus' order_item.id %}">Remove</a>
+                </div>
+              </div>
+              {% endfor %}
+              
+            <aside>
+              
+              <div class="summary">
+                <div class="summary-total-items"><span class="total-items"></span>{{order_item.quantity}} Items in your Bag</div>
+                <div class="summary-subtotal">
+                
+                  {% if order.get_total_price%}
+                  {{order}}
+                  <div class="subtotal-title">Subtotal</div>
+                  <div class="subtotal-value final-value" id="basket-subtotal">{{ order.get_total_price }}</div>
+                  <div class="summary-promo hide">
+                    <div class="promo-title">Promotion</div>
+                    <div class="promo-value final-value" id="basket-promo"></div>
+                  </div>
+                
+                </div>
+
+                <div class="summary-delivery">
+                  <select name="delivery-collection" class="summary-delivery-selection">
+                    <option value="0" selected="selected">Select Collection or Delivery</option>
+                    <option value="collection">Collection</option>
+                    <option value="first-class">Royal Mail 1st Class</option>
+                    <option value="second-class">Royal Mail 2nd Class</option>
+                    <option value="signed-for">Royal Mail Special Delivery</option>
+                  </select>
+                </div>
+                <div class="summary-total">
+                  <div class="total-title">Total</div>
+                  <div class="total-value final-value" id="basket-total">rs{{order.get_total_price}}</div>
+                </div>
+                {%endif%}
+                
+                <div class="summary-checkout">
+                  <a href="{% url 'Checkout_page' %}" class="checkout-cta">Go to Secure Checkout</a>
+                </div>
+              </div>
+
+            </aside>
+          </main>
+            
+            
+
+       
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script><script  src="{% static 'script.js' %}"></script>
+        <script src="{% static '/js/script.js' %}"></script>
+    </body>
+</html>

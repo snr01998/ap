@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+       
+        <div id="maincontainer">
+            <div id ="inner">
+              <p id="mainheading">h</p>
+              <p id="address">address</p>
+              <div id ="inner1">
+              <img id="logo" src="#"></img>
+              </div>
+            </div>
+        </div>
+    </div>
+            <div id="aa">
+                <table id="contain">
+                    <tr>
+                        <td id="w">items</td>
+                        <td>quantity</td>
+                        <td>price</td>
+                    </tr>
+                    {% for item in order.items.all %}
+                    <tr class="item">
+                        <td >{{item.product.name}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>rs.{{item.get_total.item_price}}</td>
+                    </tr>
+                    {% endfor %}
+                    <td>
+                       <tr> {{order.user.username}}</tr>
+                      <tr>  {{check_outaddress.address.street_address}}</tr>
+                       <tr> {{check_outaddress.address.apartment_address}}</tr>
+                      <tr>  {{check_outaddress.country}}</tr>
+                      <tr>  {{check_outaddress.address.zipcode}}</tr>
+                       <tr> {{payment_status.contact}}</tr>
+                    </td>
+                    <tr>
+                        <td>discount</td>
+                    </tr>
+                    <tr>
+                        <td>gst</td>
+                    </tr>
+                    <tr>
+                        <td>total: {{order.get_total_price}}</td>
+                    </tr>
+                </table>
+            
+          <button id="print">print</button>
+
+        <script src="styles.js" ></script>
+        <script > document.document.getElementById("id").addEventListener("click",function(){
+            window.print()});</script>
+        <script >
+            
+
+            document.getElementById('inner1').style.backgroundColor="orange";
+            document.getElementById('inner1').style.height="120px";
+            document.getElementById('inner1').style.top="1010px";
+            document.getElementById('inner').style.width="120px";
+            document.getElementById('logo').style.width="100px";
+            document.getElementById('logo').style.height="100px";
+            
+            document.getElementById('w').style.fontcolor="yellow"
+            
+
+
+        </script>
+    </body>
+</html>

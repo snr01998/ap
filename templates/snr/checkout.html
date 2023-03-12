@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>login</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    </head>
+    <body>
+        
+            
+        
+        <div class="logo text-center">
+            <h1>Logo</h1>
+          </div>
+          <div class="wrapper">
+            <div class="inner-warpper text-center">
+              <h2 class="title">acheckout_address</h2>
+              {% if payment_allow == "allow"%}
+              <a href="{% url 'paymentsess'  %}" class="login-title">checkout </a>
+              {% else %}
+              <h2 class="title badge badge-light">checkout address</h2>
+
+              {% if messages %}
+              {% for message in messages%}
+              <h2 class="title badge badge-light">{{message}}</h2>
+              {% endfor %}
+              {% endif %}
+               {% endif %}
+              sdasdasd
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                {{form.as_p}}
+                
+                
+    
+               
+                
+               <input type="submit" id="Checkout_page" name="Checkout_page" value="check out"/>checkout
+                <div class="clearfix supporter">
+                  
+                </div>
+            </form>
+            </div>
+          </div>
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script><script  src="{% static 'script.js' %}"></script>
+        <script src="" async defer></script>
+    </body>
+</html>
